@@ -9,6 +9,7 @@
 #include <Forms.hpp>
 #include <ExtCtrls.hpp>
 #include <MPlayer.hpp>
+#include <Graphics.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -16,26 +17,29 @@ __published:	// IDE-managed Components
   TPanel *Panel1;
   TLabel *Label1;
   TTimer *Timer1;
-  TButton *Button2;
-  TButton *Button3;
-  TLabel *Label2;
-  TButton *Button1;
-  TButton *Button4;
-  TButton *Button5;
+  TButton *shootUp;
+  TButton *speedUp;
+  TButton *powerUp;
+  TButton *money;
+  TButton *levelUp;
   TMediaPlayer *music;
   TTimer *Timer2;
-  TButton *Button6;
+  TButton *replay;
   TTimer *Timer3;
   TTimer *Timer4;
+  TImage *Image1;
+  TImage *Image2;
+  TTimer *Timer5;
+  TLabel *Label2;
   void __fastcall Timer1Timer(TObject *Sender);
-  void __fastcall Button1Click(TObject *Sender);
-  void __fastcall Button2Click(TObject *Sender);
-  void __fastcall Button3Click(TObject *Sender);
-  void __fastcall Button5Click(TObject *Sender);
-  void __fastcall Button6Click(TObject *Sender);
+  void __fastcall powerUpClick(TObject *Sender);
+  void __fastcall shootUpClick(TObject *Sender);
+  void __fastcall speedUpClick(TObject *Sender);
+  void __fastcall levelUpClick(TObject *Sender);
+  void __fastcall replayClick(TObject *Sender);
   void __fastcall Timer3Timer(TObject *Sender);
-  void __fastcall Button4Click(TObject *Sender);
-  void __fastcall Timer4Timer(TObject *Sender);
+  void __fastcall moneyClick(TObject *Sender);
+  void __fastcall Timer5Timer(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);
@@ -43,7 +47,7 @@ public:		// User declarations
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;
 //---------------------------------------------------------------------------
-class ball{
+class bullet{
   friend class air;
   friend class brick;
   private:
@@ -58,20 +62,20 @@ class ball{
     int mark;
     int getLeft();
     int getTop();
-    ~ball();
-    ball(TPanel*panel, int x, int y, int speed, int size, int power, int coor_x, int coor_y);
+    ~bullet();
+    bullet(TPanel*panel, int x, int y, int speed, int size, int power, int coor_x, int coor_y);
 };
 
 class type{
-  friend class ball;
+  friend class bullet;
   friend class brick;
   protected:
     int pWidth1;
     int pHeight1;
     int hpAir;                //  ¾×ªO¥Í©R­È
     TImage*rectangle;
-    void __fastcall timed(TObject *Sender);
   public:
+    void __fastcall timed(TObject *Sender);
     TTimer*time;
     int getLeft();
     int getTop();
@@ -81,17 +85,17 @@ class type{
 
 class air:public type{
   public:
-    air(TPanel*panel);
+    air(TPanel*panel, int speed);
     
 };
 
 class super:public type{
   public:
-    super(TPanel*panel);
+    super(TPanel*panel, int speed);
 };
 
 class brick{
-  friend ball;
+  friend bullet;
   friend air;
   public:
     TTimer*timing;
