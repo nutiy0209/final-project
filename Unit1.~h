@@ -8,6 +8,7 @@
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
 #include <ExtCtrls.hpp>
+#include <MPlayer.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -21,6 +22,7 @@ __published:	// IDE-managed Components
   TButton *Button1;
   TButton *Button4;
   TButton *Button5;
+  TMediaPlayer *MediaPlayer1;
   void __fastcall Timer1Timer(TObject *Sender);
   void __fastcall Button1Click(TObject *Sender);
   void __fastcall Button2Click(TObject *Sender);
@@ -45,7 +47,6 @@ class ball{
     int x, y;                    //  座標變化量
     int pHeight, pWidth;
     int size, power;             //  大小  火力
-
   public:
     int mark;
     int getLeft();
@@ -57,7 +58,6 @@ class ball{
 class type{
   friend class ball;
   friend class brick;
-  private:
   protected:
     int pWidth1;
     int pHeight1;
@@ -73,14 +73,12 @@ class type{
 };
 
 class air:public type{
-  private:
   public:
     air(TPanel*panel);
     
 };
 
 class super:public type{
-  private:
   public:
     super(TPanel*panel);
 };
@@ -88,8 +86,6 @@ class super:public type{
 class brick{
   friend ball;
   friend air;
-  private:
-
   public:
     TTimer*timing;
     void __fastcall timez(TObject *Sender);

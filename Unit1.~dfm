@@ -85,6 +85,13 @@ object Form1: TForm1
     TabOrder = 5
     OnClick = Button5Click
   end
+  object MediaPlayer1: TMediaPlayer
+    Left = 1272
+    Top = 718
+    Width = 253
+    Height = 35
+    TabOrder = 6
+  end
   object Timer1: TTimer
     Interval = 400
     OnTimer = Timer1Timer

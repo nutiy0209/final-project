@@ -18,8 +18,8 @@ ball * make[500];
 air * block;
 super * block2;
 brick * strip[16][8];
-int i = 0, j = 3, k = 5, p = 0;
-int power = 2;
+int p = 0;
+int power = 1;
 int everyCoin = 0, countCoin = 0, totalCoin = 0;
 int coor_x = 0, coor_y = 0;
 //---------------------------------------------------------------------------
@@ -64,55 +64,18 @@ void __fastcall ball::timer(TObject * Sender) {
 
   /*========²¾°Ê========*/
   circle -> Top = circle -> Top - y;
-  //int center_x=circle->Left + (circle->Width/2);
-  //int center_y=circle->Top + (circle->Height/2);
 
   /*========¿j¶ô¸I¼²========*/
 
   for (int m = 0; m < 16; m++) {
     for (int n = 0; n < 8; n++) {
       if (strip[m][n] -> hpBrick > 0) {
-        /*if(circle->Top < strip[m][n]->square->Top
-          && circle->Left + circle->Width >= strip[m][n]->square->Left
-          && circle->Left <= (strip[m][n]->square->Left + strip[m][n]->square->Width)){   //  ¿j¶ô¤W¤è
-          mark++;
-          strip[m][n]->hpBrick=strip[m][n]->hpBrick - power;
-          circle->Left+=1000;
-        }*/
         if (circle -> Top < strip[m][n] -> square -> Top + strip[m][n] -> square -> Height &&
           circle -> Left + circle -> Width >= strip[m][n] -> square -> Left &&
           circle -> Left <= (strip[m][n] -> square -> Left + strip[m][n] -> square -> Width)) { //  ¿j¶ô¤U¤è
           strip[m][n] -> hpBrick = strip[m][n] -> hpBrick - power;
           circle -> Left += 1000;
         }
-        /*if(sqrt(pow(center_x - strip[m][n]->square->Left,2))<= circle->Width/2
-           && (center_y >= strip[m][n]->square->Top && center_y <= strip[m][n]->square->Top + strip[m][n]->square->Height)){    //  ¿j¶ô¥ª°¼
-
-          strip[m][n]->hpBrick=strip[m][n]->hpBrick - power;
-          circle->Left+=1000;
-        }
-        if(sqrt(pow(center_x - (strip[m][n]->square->Left + strip[m][n]->square->Width),2))<= circle->Width/2
-           && (center_y >= strip[m][n]->square->Top && center_y <= strip[m][n]->square->Top + strip[m][n]->square->Height)){    //  ¿j¶ô¥k°¼
-
-          strip[m][n]->hpBrick=strip[m][n]->hpBrick - power;
-          circle->Left+=1000;
-        }
-        if((center_x >= strip[m][n]->square->Left && (center_x <= strip[m][n]->square->Left + strip[m][n]->square->Width))
-          &&(  center_y < strip[m][n]->square->Top + strip[m][n]->square->Height)){   //  //  ¿j¶ô¥d¦í®É°{²{
-
-          strip[m][n]->hpBrick=strip[m][n]->hpBrick - power;
-          circle->Left+=1000;
-        }
-        if(sqrt(pow(center_x - strip[m][n]->square->Left,2) + pow(center_y - strip[m][n]->square->Top,2)) <= circle->Width/2){    //  ¿j¶ô¥ª°¼ÂI
-
-          strip[m][n]->hpBrick=strip[m][n]->hpBrick - power;
-          circle->Left+=1000;
-        }
-        if(sqrt(pow(center_x - (strip[m][n]->square->Left + strip[m][n]->square->Width),2) + pow(center_y - strip[m][n]->square->Top,2)) <= circle->Width/2){   //  ¿j¶ô¥k°¼ÂI
-
-          strip[m][n]->hpBrick=strip[m][n]->hpBrick - power;
-          circle->Left+=1000;
-        }*/
       }
     }
   }
@@ -207,7 +170,7 @@ brick::brick(TPanel * panel, int x_, int y_, int color) {
 }
 
 void __fastcall brick::timez(TObject * Sender) {
-  if (hpBrick <= 0) {
+  if (hpBrick <= 0  && square->Top < 720 ) {
     square -> Width = 25;
     square -> Shape = stEllipse;
     square -> Top += 2;
@@ -217,7 +180,7 @@ void __fastcall brick::timez(TObject * Sender) {
       square -> Top + square -> Height <= block -> rectangle -> Top + block -> rectangle -> Height &&
       square -> Left + square -> Width >= block -> rectangle -> Left &&
       square -> Left <= (block -> rectangle -> Left + block -> rectangle -> Width)) {
-      square -> Top += 1000;
+      square -> Top += 720;
       allCoin = coin;
     }
   }
@@ -226,7 +189,7 @@ void __fastcall brick::timez(TObject * Sender) {
       square -> Top + square -> Height <= block2 -> rectangle -> Top + block2 -> rectangle -> Height &&
       square -> Left + square -> Width >= block2 -> rectangle -> Left &&
       square -> Left <= (block2 -> rectangle -> Left + block2 -> rectangle -> Width)) {
-      square -> Top += 1000;
+      square -> Top += 720;
       allCoin = coin;
     }
   }
@@ -260,6 +223,7 @@ void __fastcall TForm1::Timer1Timer(TObject * Sender) {
     }
   }
   everyCoin += countCoin;
+  totalCoin = everyCoin;
   Label2 -> Caption = "ª÷¹ô" + String(everyCoin);
   p += 3;
 }
@@ -274,25 +238,30 @@ ball::getTop() {
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button1Click(TObject * Sender) {
-  power += 2;
-  countCoin -= 10;
+  if(totalCoin > 10){
+    power += 2;
+    countCoin -= 10;
+  }
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button2Click(TObject * Sender) {
-  Timer1 -> Interval -= 20;
-  countCoin -= 10;
+  if(totalCoin > 10){
+    Timer1 -> Interval -= 20;
+    countCoin -= 10;
+  }
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button3Click(TObject * Sender) {
-  if (block != NULL) {
-    block -> time -> Interval -= 1;
-  } else {
-    block2 -> time -> Interval -= 1;
+  if(totalCoin > 10){
+    if (block != NULL) {
+      block -> time -> Interval -= 1;
+    } else {
+      block2 -> time -> Interval -= 1;
+    }
+    countCoin -= 10;
   }
-  countCoin -= 10;
-
 }
 //---------------------------------------------------------------------------
 
@@ -314,3 +283,4 @@ void __fastcall TForm1::Button4Click(TObject * Sender) {
   p = 0;
 }
 //---------------------------------------------------------------------------
+

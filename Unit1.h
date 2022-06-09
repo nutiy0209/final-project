@@ -8,6 +8,7 @@
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
 #include <ExtCtrls.hpp>
+#include <MPlayer.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -21,6 +22,7 @@ __published:	// IDE-managed Components
   TButton *Button1;
   TButton *Button4;
   TButton *Button5;
+  TMediaPlayer *MediaPlayer1;
   void __fastcall Timer1Timer(TObject *Sender);
   void __fastcall Button1Click(TObject *Sender);
   void __fastcall Button2Click(TObject *Sender);
