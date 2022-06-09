@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 219
-  Top = 130
+  Left = 94
+  Top = 109
   Width = 1202
   Height = 688
   AlphaBlend = True
@@ -72,7 +72,7 @@ object Form1: TForm1
     Top = 160
     Width = 73
     Height = 49
-    Caption = #28165#31354
+    Caption = #35506#37329
     TabOrder = 4
     OnClick = Button4Click
   end
@@ -85,17 +85,45 @@ object Form1: TForm1
     TabOrder = 5
     OnClick = Button5Click
   end
-  object MediaPlayer1: TMediaPlayer
+  object music: TMediaPlayer
     Left = 1272
     Top = 718
     Width = 253
     Height = 35
+    AutoOpen = True
+    Display = Panel1
+    FileName = 
+      'C:\Users\nutiy\Desktop\'#20316#26989'\'#19968#19979#31243#35373'\'#26399#26411#23560#38988'2\final-project-main\first.mp' +
+      '3'
     TabOrder = 6
+  end
+  object Button6: TButton
+    Left = 1104
+    Top = 248
+    Width = 41
+    Height = 33
+    Caption = #20877#20358#19968#23616
+    TabOrder = 7
+    OnClick = Button6Click
   end
   object Timer1: TTimer
     Interval = 400
     OnTimer = Timer1Timer
     Left = 1264
     Top = 760
+  end
+  object Timer2: TTimer
+    Left = 1136
+    Top = 496
+  end
+  object Timer3: TTimer
+    OnTimer = Timer3Timer
+    Left = 1104
+    Top = 496
+  end
+  object Timer4: TTimer
+    OnTimer = Timer4Timer
+    Left = 1112
+    Top = 552
   end
 end
