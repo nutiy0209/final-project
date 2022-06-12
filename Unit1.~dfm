@@ -51892,11 +51892,18 @@ object Form1: TForm1
     Left = 1080
     Top = 240
     Width = 81
-    Height = 80
+    Height = 81
     Alignment = taCenter
+    AutoSize = False
     Caption = 'Label2'
     Color = clBtnFace
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
     ParentColor = False
+    ParentFont = False
   end
   object Panel1: TPanel
     Left = 360
@@ -51913,7 +51920,7 @@ object Form1: TForm1
     Caption = #25552#21319#28779#21147
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
+    Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
@@ -51928,7 +51935,7 @@ object Form1: TForm1
     Caption = #25552#21319#23556#36895
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
+    Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
@@ -51944,7 +51951,7 @@ object Form1: TForm1
     Caption = #25552#21319#31227#36895
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
+    Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentBiDiMode = False
@@ -51960,7 +51967,7 @@ object Form1: TForm1
     Caption = #35506#37329
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
+    Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
@@ -51975,7 +51982,7 @@ object Form1: TForm1
     Caption = #21319#32026#25136#27231
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
+    Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
@@ -52004,7 +52011,7 @@ object Form1: TForm1
     Caption = #20877#20358#19968#23616
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
+    Font.Height = -11
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False

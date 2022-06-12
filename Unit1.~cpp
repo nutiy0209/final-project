@@ -132,10 +132,13 @@ void __fastcall TForm1::speedUpClick(TObject * Sender) {
 }
 
 void __fastcall TForm1::levelUpClick(TObject * Sender) {
-  plane1 -> ~air();
-  plane1 = NULL;
-  plane2 = new super(Panel1, speed);
-  replay -> Enabled = false;
+  if (totalCoin + everyCoin + countCoin > 1000) {
+    plane1 -> ~air();
+    plane1 = NULL;
+    plane2 = new super(Panel1, speed);
+    countCoin -= 1000;
+    replay -> Enabled = false;
+  }
 }
 
 void __fastcall TForm1::replayClick(TObject * Sender) {
@@ -302,7 +305,7 @@ brick::brick(TPanel * panel, int x_, int y_, int color) {
   } else if (color == 4 || color == 5 || color == 6) { //³´¨À
     square -> Brush -> Color = clBlack;
     hpBrick = 3;
-    coin = -50;
+    coin = -30;
   } else { //¤ì¿j
     square -> Brush -> Color = clMaroon;
     hpBrick = 1;
