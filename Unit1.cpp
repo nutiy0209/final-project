@@ -23,6 +23,7 @@ int count = 0;
 int everyCoin = 0, countCoin = 0, totalCoin = 0;
 int coor_x = 0, coor_y = 0;
 int speed = 50, power = 1;
+int sec = 0, change = 0;;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent * Owner): TForm(Owner) {
   srand(time(NULL));
@@ -43,16 +44,16 @@ void __fastcall TForm1::Timer1Timer(TObject * Sender) {
     coor_x = plane1 -> getLeft() + 27;
     coor_y = plane1 -> getTop();
   } else {
-    coor_x = plane2 -> getLeft() + 27;
+    coor_x = plane2 -> getLeft() + 50;
     coor_y = plane2 -> getTop();
   }
   everyCoin = 0;
   if (plane1 != NULL) {
     make[p] = new bullet(Panel1, 8, 10, 15, 25, power, coor_x, coor_y);
   } else {
-    make[p] = new bullet(Panel1, 8, 10, 15, 25, power, plane2 -> getLeft() - 22, coor_y);
+    make[p] = new bullet(Panel1, 8, 10, 15, 25, power, plane2 -> getLeft() - 15, coor_y);
     make[p + 1] = new bullet(Panel1, 8, 10, 15, 25, power, coor_x, coor_y);
-    make[p + 2] = new bullet(Panel1, 8, 10, 15, 25, power, plane2 -> getLeft() + 75, coor_y);
+    make[p + 2] = new bullet(Panel1, 8, 10, 15, 25, power, plane2 -> getLeft() + 120, coor_y);
   }
   for (int m = 0; m < 16; m++) {
     for (int n = 0; n < 8; n++) {
@@ -72,12 +73,12 @@ void __fastcall TForm1::Timer1Timer(TObject * Sender) {
     }
   }
   if (count == 128) {
-    ShowMessage("通關勝利");
     Timer1 -> Enabled = false;
+    ShowMessage("通關勝利");
   }
 }
 void __fastcall TForm1::Timer3Timer(TObject * Sender) {
-  if (p > 60) {
+  if (p > 40) {
     for (int i = 0; i < 100; i++) {
       if (make[i] != NULL) {
         make[i] -> ~bullet();
@@ -88,12 +89,13 @@ void __fastcall TForm1::Timer3Timer(TObject * Sender) {
   }
 }
 void __fastcall TForm1::Timer5Timer(TObject * Sender) {
-  if (count == 128) {
+  if (count == 128 && (sec % 10) == 0) {
     music -> Close();
     music -> Open();
     music -> FileName = "victory.mp3";
     music -> Play();
   }
+  sec++;
 }
 
 //---------------------------------------------------------------------------
@@ -137,7 +139,7 @@ void __fastcall TForm1::levelUpClick(TObject * Sender) {
     plane1 = NULL;
     plane2 = new super(Panel1, speed);
     countCoin -= 1000;
-    replay -> Enabled = false;
+    levelUp -> Enabled = false;
   }
 }
 
@@ -171,6 +173,17 @@ void __fastcall TForm1::replayClick(TObject * Sender) {
 
 void __fastcall TForm1::moneyClick(TObject * Sender) {
   countCoin += 1000;
+}
+
+void __fastcall TForm1::hardClick(TObject * Sender) {
+  if ((change % 2) == 0) {
+    Panel1 -> Color = clBlack;
+    hard -> Caption = "普通模式";
+  } else {
+    Panel1 -> Color = clWhite;
+    hard -> Caption = "地獄模式";
+  }
+  change++;
 }
 
 //---------------------------------------------------------------------------
@@ -284,6 +297,8 @@ air::air(TPanel * panel, int speed): type(panel) {
 super::super(TPanel * panel, int speed): type(panel) {
   rectangle -> Picture -> LoadFromFile("./block2.bmp");
   time -> Interval = speed;
+  rectangle -> Width = 120;
+  rectangle -> Height = 120;
 }
 //---------------------------------------------------------------------------
 brick::brick(TPanel * panel, int x_, int y_, int color) {
@@ -318,7 +333,7 @@ brick::brick(TPanel * panel, int x_, int y_, int color) {
 }
 
 void __fastcall brick::timez(TObject * Sender) {
-  if (hpBrick <= 0 && square -> Top < 800) {
+  if (hpBrick <= 0 && square -> Top < 800) { //  金幣
     square -> Width = 25;
     square -> Shape = stEllipse;
     square -> Top += 8;
@@ -347,3 +362,4 @@ brick::~brick() {
   square -> ~TShape();
 }
 
+//---------------------------------------------------------------------------

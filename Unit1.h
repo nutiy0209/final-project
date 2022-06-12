@@ -29,9 +29,11 @@ __published:	// IDE-managed Components
   TTimer *Timer4;
   TImage *Image1;
   TImage *Image2;
-  TTimer *Timer5;
   TLabel *Label2;
+  TTimer *Timer5;
+  TButton *hard;
   void __fastcall Timer1Timer(TObject *Sender);
+  void __fastcall Timer5Timer(TObject *Sender);
   void __fastcall powerUpClick(TObject *Sender);
   void __fastcall shootUpClick(TObject *Sender);
   void __fastcall speedUpClick(TObject *Sender);
@@ -39,7 +41,7 @@ __published:	// IDE-managed Components
   void __fastcall replayClick(TObject *Sender);
   void __fastcall Timer3Timer(TObject *Sender);
   void __fastcall moneyClick(TObject *Sender);
-  void __fastcall Timer5Timer(TObject *Sender);
+  void __fastcall hardClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);

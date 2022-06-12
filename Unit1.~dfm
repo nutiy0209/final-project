@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 126
-  Top = 202
+  Left = -126
+  Top = 277
   Width = 1552
   Height = 840
   AlphaBlend = True
@@ -27,7 +27,7 @@ object Form1: TForm1
     ParentColor = False
   end
   object Image1: TImage
-    Left = 0
+    Left = 8
     Top = 0
     Width = 360
     Height = 768
@@ -25956,9 +25956,10 @@ object Form1: TForm1
       250D01250D01250D01250D01230D01230D01260E02250D01250D01260E02250D
       01250D01260E02250D01250D01250D01250D01250D01250D01250D01250D0125
       0D01}
+    Stretch = True
   end
   object Image2: TImage
-    Left = 1160
+    Left = 1168
     Top = -8
     Width = 360
     Height = 768
@@ -51890,8 +51891,8 @@ object Form1: TForm1
   end
   object Label2: TLabel
     Left = 1080
-    Top = 240
-    Width = 81
+    Top = 280
+    Width = 80
     Height = 81
     Alignment = taCenter
     AutoSize = False
@@ -51910,6 +51911,7 @@ object Form1: TForm1
     Top = 0
     Width = 720
     Height = 800
+    Color = clHighlightText
     TabOrder = 0
   end
   object powerUp: TButton
@@ -52018,6 +52020,15 @@ object Form1: TForm1
     TabOrder = 7
     OnClick = replayClick
   end
+  object hard: TButton
+    Left = 1080
+    Top = 240
+    Width = 80
+    Height = 41
+    Caption = #22320#29508#27169#24335
+    TabOrder = 8
+    OnClick = hardClick
+  end
   object Timer1: TTimer
     Interval = 400
     OnTimer = Timer1Timer
@@ -52038,7 +52049,7 @@ object Form1: TForm1
     Top = 696
   end
   object Timer5: TTimer
-    Interval = 4000
+    Interval = 400
     OnTimer = Timer5Timer
     Left = 1160
     Top = 632
